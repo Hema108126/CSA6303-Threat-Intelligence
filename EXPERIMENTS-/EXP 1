@@ -1,0 +1,67 @@
+{
+  "nbformat": 4,
+  "nbformat_minor": 0,
+  "metadata": {
+    "colab": {
+      "provenance": [],
+      "authorship_tag": "ABX9TyOOqYVJlKNLaxq5CNpNps/H",
+      "include_colab_link": true
+    },
+    "kernelspec": {
+      "name": "python3",
+      "display_name": "Python 3"
+    },
+    "language_info": {
+      "name": "python"
+    }
+  },
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "view-in-github",
+        "colab_type": "text"
+      },
+      "source": [
+        "<a href=\"https://colab.research.google.com/github/Hema108126/CSA6303-Threat-Intelligence/blob/main/EXPERIMENTS-/EXP%201\" target=\"_parent\"><img src=\"https://colab.research.google.com/assets/colab-badge.svg\" alt=\"Open In Colab\"/></a>"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": 1,
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "2gz_iKeL4Kw3",
+        "outputId": "784d199b-c779-4f90-ee3f-afcdd47fe74f"
+      },
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Enter a business scenario: A bank detects suspicious online transactions.\n",
+            "Application Area: Banking Fraud Prevention\n"
+          ]
+        }
+      ],
+      "source": [
+        "# Identify the threat-intelligence application area\n",
+        "\n",
+        "scenario = input(\"Enter a business scenario: \").lower()\n",
+        "\n",
+        "if any(word in scenario for word in [\"bank\", \"banking\", \"financial\", \"payment\", \"transaction\"]):\n",
+        "    print(\"Application Area: Banking Fraud Prevention\")\n",
+        "elif any(word in scenario for word in [\"hospital\", \"healthcare\", \"medical\", \"patient\"]):\n",
+        "    print(\"Application Area: Healthcare Data Protection\")\n",
+        "elif any(word in scenario for word in [\"e-commerce\", \"ecommerce\", \"online shopping\", \"retail\"]):\n",
+        "    print(\"Application Area: E-commerce Fraud Prevention\")\n",
+        "elif any(word in scenario for word in [\"college\", \"school\", \"university\", \"student\"]):\n",
+        "    print(\"Application Area: Educational Data Protection\")\n",
+        "else:\n",
+        "    print(\"Application Area: General Cyber Threat Monitoring\")"
+      ]
+    }
+  ]
+}
