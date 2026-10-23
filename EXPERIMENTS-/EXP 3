@@ -1,0 +1,90 @@
+{
+  "nbformat": 4,
+  "nbformat_minor": 0,
+  "metadata": {
+    "colab": {
+      "provenance": [],
+      "authorship_tag": "ABX9TyMuNn8EblN4aIrB09yxSqoB",
+      "include_colab_link": true
+    },
+    "kernelspec": {
+      "name": "python3",
+      "display_name": "Python 3"
+    },
+    "language_info": {
+      "name": "python"
+    }
+  },
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "view-in-github",
+        "colab_type": "text"
+      },
+      "source": [
+        "<a href=\"https://colab.research.google.com/github/Hema108126/CSA6303-Threat-Intelligence/blob/main/EXPERIMENTS-/EXP%203\" target=\"_parent\"><img src=\"https://colab.research.google.com/assets/colab-badge.svg\" alt=\"Open In Colab\"/></a>"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": 1,
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "G1TIwUz65jHW",
+        "outputId": "c14fb178-d975-49e2-cff4-06ea297d43de"
+      },
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Enter security policy text: This policy defines the scope of security activities. All employees must follow the policy. The policy is enforced by management.\n",
+            "Scope: PRESENT\n",
+            "Roles and Responsibilities: MISSING\n",
+            "Enforcement: MISSING\n",
+            "Review Cycle: MISSING\n",
+            "Approval Authority: MISSING\n",
+            "\n",
+            "Missing Governance Elements:\n",
+            "- Roles and Responsibilities\n",
+            "- Enforcement\n",
+            "- Review Cycle\n",
+            "- Approval Authority\n"
+          ]
+        }
+      ],
+      "source": [
+        "# Check required elements in a security policy\n",
+        "\n",
+        "policy = input(\"Enter security policy text: \").lower()\n",
+        "\n",
+        "requirements = {\n",
+        "    \"Scope\": [\"scope\", \"applies to\", \"coverage\"],\n",
+        "    \"Roles and Responsibilities\": [\"roles\", \"responsibilities\", \"accountability\"],\n",
+        "    \"Enforcement\": [\"enforcement\", \"disciplinary\", \"penalties\"],\n",
+        "    \"Review Cycle\": [\"review cycle\", \"review annually\", \"review every\"],\n",
+        "    \"Approval Authority\": [\"approved by\", \"approval authority\", \"authorized by\"]\n",
+        "}\n",
+        "\n",
+        "missing = []\n",
+        "\n",
+        "for element, keywords in requirements.items():\n",
+        "    if any(word in policy for word in keywords):\n",
+        "        print(element + \": PRESENT\")\n",
+        "    else:\n",
+        "        print(element + \": MISSING\")\n",
+        "        missing.append(element)\n",
+        "\n",
+        "print(\"\\nMissing Governance Elements:\")\n",
+        "if missing:\n",
+        "    for element in missing:\n",
+        "        print(\"-\", element)\n",
+        "else:\n",
+        "    print(\"All required elements are present.\")"
+      ]
+    }
+  ]
+}
