@@ -1,0 +1,72 @@
+{
+  "nbformat": 4,
+  "nbformat_minor": 0,
+  "metadata": {
+    "colab": {
+      "provenance": [],
+      "authorship_tag": "ABX9TyPCR6tIzIBjPc7zhLu9SePh",
+      "include_colab_link": true
+    },
+    "kernelspec": {
+      "name": "python3",
+      "display_name": "Python 3"
+    },
+    "language_info": {
+      "name": "python"
+    }
+  },
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "view-in-github",
+        "colab_type": "text"
+      },
+      "source": [
+        "<a href=\"https://colab.research.google.com/github/Hema108126/CSA6303-Threat-Intelligence/blob/main/EXPERIMENTS-/EXP%204\" target=\"_parent\"><img src=\"https://colab.research.google.com/assets/colab-badge.svg\" alt=\"Open In Colab\"/></a>"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": 1,
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "iewQyR6Ce64w",
+        "outputId": "f0712992-1cb4-494e-d535-b5f690e38c3f"
+      },
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Original Data: Secret VPN Data\n",
+            "Captured Data (Encrypted): b'J|zk|m9OIW9]xmx'\n",
+            "Without Key: J|zk|m9OIW9]xmx\n",
+            "With Shared Key: Secret VPN Data\n"
+          ]
+        }
+      ],
+      "source": [
+        "# VPN Confidentiality Demonstration\n",
+        "\n",
+        "def encrypt(text, key):\n",
+        "    return bytes([ord(c) ^ key for c in text])\n",
+        "\n",
+        "def decrypt(data, key):\n",
+        "    return ''.join(chr(b ^ key) for b in data)\n",
+        "\n",
+        "message = \"Secret VPN Data\"\n",
+        "key = 25\n",
+        "\n",
+        "encrypted = encrypt(message, key)\n",
+        "\n",
+        "print(\"Original Data:\", message)\n",
+        "print(\"Captured Data (Encrypted):\", encrypted)\n",
+        "print(\"Without Key:\", encrypted.decode('latin-1'))\n",
+        "print(\"With Shared Key:\", decrypt(encrypted, key))"
+      ]
+    }
+  ]
+}
