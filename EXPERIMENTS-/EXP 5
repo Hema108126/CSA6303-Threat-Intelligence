@@ -1,0 +1,78 @@
+{
+  "nbformat": 4,
+  "nbformat_minor": 0,
+  "metadata": {
+    "colab": {
+      "provenance": [],
+      "authorship_tag": "ABX9TyMFEnWxwSXfbmLCE+s7UHP3",
+      "include_colab_link": true
+    },
+    "kernelspec": {
+      "name": "python3",
+      "display_name": "Python 3"
+    },
+    "language_info": {
+      "name": "python"
+    }
+  },
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "view-in-github",
+        "colab_type": "text"
+      },
+      "source": [
+        "<a href=\"https://colab.research.google.com/github/Hema108126/CSA6303-Threat-Intelligence/blob/main/EXPERIMENTS-/EXP%205\" target=\"_parent\"><img src=\"https://colab.research.google.com/assets/colab-badge.svg\" alt=\"Open In Colab\"/></a>"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": 2,
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "c_U3hKlMfMNC",
+        "outputId": "49b3a451-127c-4d93-f335-1e2f36fca047"
+      },
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Enter report description: Long-term cyber risk and business strategy\n",
+            "Enter intended audience: CE0\n",
+            "Report Classification: Strategic\n"
+          ]
+        }
+      ],
+      "source": [
+        "# Classify Threat Intelligence Reports\n",
+        "\n",
+        "def classify_report(description, audience):\n",
+        "    text = (description + \" \" + audience).lower()\n",
+        "\n",
+        "    if any(word in text for word in\n",
+        "           [\"ceo\", \"executive\", \"business strategy\", \"long-term\"]):\n",
+        "        return \"Strategic\"\n",
+        "\n",
+        "    elif any(word in text for word in\n",
+        "             [\"ioc\", \"ip address\", \"hash\", \"signature\", \"tactic\"]):\n",
+        "        return \"Tactical\"\n",
+        "\n",
+        "    elif any(word in text for word in\n",
+        "             [\"soc analyst\", \"incident response\", \"alert\", \"immediate\"]):\n",
+        "        return \"Operational\"\n",
+        "\n",
+        "    return \"Operational\"\n",
+        "\n",
+        "description = input(\"Enter report description: \")\n",
+        "audience = input(\"Enter intended audience: \")\n",
+        "\n",
+        "result = classify_report(description, audience)\n",
+        "print(\"Report Classification:\", result)"
+      ]
+    }
+  ]
+}
