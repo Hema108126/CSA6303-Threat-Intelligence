@@ -1,0 +1,77 @@
+{
+  "nbformat": 4,
+  "nbformat_minor": 0,
+  "metadata": {
+    "colab": {
+      "provenance": [],
+      "authorship_tag": "ABX9TyMZ1ACaD3qE0daM37GQJSFv",
+      "include_colab_link": true
+    },
+    "kernelspec": {
+      "name": "python3",
+      "display_name": "Python 3"
+    },
+    "language_info": {
+      "name": "python"
+    }
+  },
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "view-in-github",
+        "colab_type": "text"
+      },
+      "source": [
+        "<a href=\"https://colab.research.google.com/github/Hema108126/CSA6303-Threat-Intelligence/blob/main/EXPERIMENTS-/EXP%2013\" target=\"_parent\"><img src=\"https://colab.research.google.com/assets/colab-badge.svg\" alt=\"Open In Colab\"/></a>"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": 2,
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "JZ4Ie0Y9oqEi",
+        "outputId": "f7345b6f-0fbb-477c-8723-6914b52fe61b"
+      },
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Enter threat context: Phishing campaign targeting bank employees\n",
+            "Enter confidence level (0-100): 90\n",
+            "Enter recommended action:  Block malicious domain and alert users\n",
+            "Result: Actionable Threat Intelligence\n",
+            "Context: Phishing campaign targeting bank employees\n",
+            "Confidence: 90 %\n",
+            "Recommended Action:  Block malicious domain and alert users\n"
+          ]
+        }
+      ],
+      "source": [
+        "# Threat Intelligence Quality Assessment\n",
+        "\n",
+        "context = input(\"Enter threat context: \")\n",
+        "confidence = int(input(\"Enter confidence level (0-100): \"))\n",
+        "action = input(\"Enter recommended action: \")\n",
+        "\n",
+        "if context.strip() and confidence >= 70 and action.strip():\n",
+        "    print(\"Result: Actionable Threat Intelligence\")\n",
+        "    print(\"Context:\", context)\n",
+        "    print(\"Confidence:\", confidence, \"%\")\n",
+        "    print(\"Recommended Action:\", action)\n",
+        "else:\n",
+        "    print(\"Result: Raw or Incomplete Threat Data\")\n",
+        "    if not context.strip():\n",
+        "        print(\"- Context is missing\")\n",
+        "    if confidence < 70:\n",
+        "        print(\"- Confidence is too low\")\n",
+        "    if not action.strip():\n",
+        "        print(\"- Actionable recommendation is missing\")"
+      ]
+    }
+  ]
+}
