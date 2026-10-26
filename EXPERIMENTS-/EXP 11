@@ -1,0 +1,79 @@
+{
+  "nbformat": 4,
+  "nbformat_minor": 0,
+  "metadata": {
+    "colab": {
+      "provenance": [],
+      "authorship_tag": "ABX9TyP2jLaXk6ZQpYxOPV9HbhbN",
+      "include_colab_link": true
+    },
+    "kernelspec": {
+      "name": "python3",
+      "display_name": "Python 3"
+    },
+    "language_info": {
+      "name": "python"
+    }
+  },
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "view-in-github",
+        "colab_type": "text"
+      },
+      "source": [
+        "<a href=\"https://colab.research.google.com/github/Hema108126/CSA6303-Threat-Intelligence/blob/main/EXPERIMENTS-/EXP%2011\" target=\"_parent\"><img src=\"https://colab.research.google.com/assets/colab-badge.svg\" alt=\"Open In Colab\"/></a>"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": 1,
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "B_giN-3RjpOt",
+        "outputId": "1a48b1cd-a201-412b-c1d9-9ef3a48a93d4"
+      },
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Capturing up to 10 packets...\n",
+            "Ether / IP / TCP 172.28.0.12:http_alt > 172.28.0.1:52910 PA / Raw\n",
+            "Ether / IP / TCP 172.28.0.1:52910 > 172.28.0.12:http_alt A\n",
+            "Ether / IP / TCP 172.28.0.12:http_alt > 172.28.0.1:52910 PA / Raw\n",
+            "Ether / IP / TCP 172.28.0.1:52910 > 172.28.0.12:http_alt A\n",
+            "Ether / IP / TCP 172.28.0.12:http_alt > 172.28.0.1:52910 PA / Raw\n",
+            "Ether / IP / TCP 172.28.0.1:52910 > 172.28.0.12:http_alt A\n",
+            "Ether / IP / TCP 172.28.0.12:http_alt > 172.28.0.1:52910 PA / Raw\n",
+            "Ether / IP / TCP 172.28.0.1:52910 > 172.28.0.12:http_alt A\n",
+            "Ether / IP / TCP 172.28.0.12:http_alt > 172.28.0.1:52910 PA / Raw\n",
+            "Ether / IP / TCP 172.28.0.1:52910 > 172.28.0.12:http_alt A\n",
+            "Total packets captured: 10\n"
+          ]
+        }
+      ],
+      "source": [
+        "# Packet Sniffing Using Scapy\n",
+        "\n",
+        "!pip -q install scapy\n",
+        "\n",
+        "from scapy.all import sniff\n",
+        "\n",
+        "def show_packet(packet):\n",
+        "    print(packet.summary())\n",
+        "\n",
+        "print(\"Capturing up to 10 packets...\")\n",
+        "try:\n",
+        "    packets = sniff(count=10, timeout=15, prn=show_packet)\n",
+        "    print(\"Total packets captured:\", len(packets))\n",
+        "except Exception as e:\n",
+        "    print(\"Packet capture failed:\", e)\n",
+        "    print(\"Try running in a local environment with permission.\")"
+      ]
+    }
+  ]
+}
