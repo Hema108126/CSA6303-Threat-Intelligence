@@ -1,0 +1,81 @@
+{
+  "nbformat": 4,
+  "nbformat_minor": 0,
+  "metadata": {
+    "colab": {
+      "provenance": [],
+      "authorship_tag": "ABX9TyPCpkDNE9xMwq7g9u8Dsf/P",
+      "include_colab_link": true
+    },
+    "kernelspec": {
+      "name": "python3",
+      "display_name": "Python 3"
+    },
+    "language_info": {
+      "name": "python"
+    }
+  },
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "view-in-github",
+        "colab_type": "text"
+      },
+      "source": [
+        "<a href=\"https://colab.research.google.com/github/Hema108126/CSA6303-Threat-Intelligence/blob/main/EXPERIMENTS-/EXP%208\" target=\"_parent\"><img src=\"https://colab.research.google.com/assets/colab-badge.svg\" alt=\"Open In Colab\"/></a>"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": 1,
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "M2qti3BZg_EC",
+        "outputId": "2cfef145-0f56-4b19-bbbc-af4b43838d28"
+      },
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Network Segmentation Test\n",
+            "\n",
+            "ACCESS ALLOWED: Low_Trust -> Internet\n",
+            "ACCESS BLOCKED: Low_Trust -> Sensitive\n",
+            "ACCESS ALLOWED: Employee -> Application_Server\n",
+            "ACCESS BLOCKED: Employee -> Sensitive\n",
+            "ACCESS BLOCKED: Authorized_Admin -> Sensitive\n"
+          ]
+        }
+      ],
+      "source": [
+        "# Network Segmentation Access Policy\n",
+        "\n",
+        "network_policy = {\n",
+        "    \"Low_Trust\": [\"Internet\"],\n",
+        "    \"Employee\": [\"Internet\", \"Application_Server\"],\n",
+        "    \"Sensitive\": [\"Authorized_Admin\"]\n",
+        "}\n",
+        "\n",
+        "def check_access(source, destination):\n",
+        "    allowed = network_policy.get(source, [])\n",
+        "\n",
+        "    if destination in allowed:\n",
+        "        print(\"ACCESS ALLOWED:\", source, \"->\", destination)\n",
+        "    else:\n",
+        "        print(\"ACCESS BLOCKED:\", source, \"->\", destination)\n",
+        "\n",
+        "print(\"Network Segmentation Test\\n\")\n",
+        "\n",
+        "check_access(\"Low_Trust\", \"Internet\")\n",
+        "check_access(\"Low_Trust\", \"Sensitive\")\n",
+        "check_access(\"Employee\", \"Application_Server\")\n",
+        "check_access(\"Employee\", \"Sensitive\")\n",
+        "check_access(\"Authorized_Admin\", \"Sensitive\")"
+      ]
+    }
+  ]
+}
