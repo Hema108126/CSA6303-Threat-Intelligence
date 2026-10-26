@@ -1,0 +1,75 @@
+{
+  "nbformat": 4,
+  "nbformat_minor": 0,
+  "metadata": {
+    "colab": {
+      "provenance": [],
+      "authorship_tag": "ABX9TyPkbNEudeWrUO6kunY57f55",
+      "include_colab_link": true
+    },
+    "kernelspec": {
+      "name": "python3",
+      "display_name": "Python 3"
+    },
+    "language_info": {
+      "name": "python"
+    }
+  },
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "view-in-github",
+        "colab_type": "text"
+      },
+      "source": [
+        "<a href=\"https://colab.research.google.com/github/Hema108126/CSA6303-Threat-Intelligence/blob/main/EXPERIMENTS-/EXP%2010\" target=\"_parent\"><img src=\"https://colab.research.google.com/assets/colab-badge.svg\" alt=\"Open In Colab\"/></a>"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": 1,
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "RBjHdQu8iW0O",
+        "outputId": "01f315e8-55dd-4f42-b03a-b43f126babca"
+      },
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "ALLOWED: Outbound connection created\n",
+            "ALLOWED: Return traffic for established connection\n",
+            "BLOCKED: Unsolicited inbound traffic\n"
+          ]
+        }
+      ],
+      "source": [
+        "# Stateful Firewall Simulation\n",
+        "\n",
+        "active_connections = set()\n",
+        "\n",
+        "def firewall(direction, source, destination):\n",
+        "    connection = (source, destination)\n",
+        "    reverse_connection = (destination, source)\n",
+        "\n",
+        "    if direction == \"OUTBOUND\":\n",
+        "        active_connections.add(connection)\n",
+        "        print(\"ALLOWED: Outbound connection created\")\n",
+        "\n",
+        "    elif direction == \"INBOUND\":\n",
+        "        if reverse_connection in active_connections:\n",
+        "            print(\"ALLOWED: Return traffic for established connection\")\n",
+        "        else:\n",
+        "            print(\"BLOCKED: Unsolicited inbound traffic\")\n",
+        "\n",
+        "firewall(\"OUTBOUND\", \"PC1:5000\", \"Server:80\")\n",
+        "firewall(\"INBOUND\", \"Server:80\", \"PC1:5000\")\n",
+        "firewall(\"INBOUND\", \"Unknown:9000\", \"PC1:5000\")"
+      ]
+    }
+  ]
+}
