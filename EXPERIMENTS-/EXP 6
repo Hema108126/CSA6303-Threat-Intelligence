@@ -1,0 +1,99 @@
+{
+  "nbformat": 4,
+  "nbformat_minor": 0,
+  "metadata": {
+    "colab": {
+      "provenance": [],
+      "authorship_tag": "ABX9TyMH0jSVZizSoRk/TxOlmA5i",
+      "include_colab_link": true
+    },
+    "kernelspec": {
+      "name": "python3",
+      "display_name": "Python 3"
+    },
+    "language_info": {
+      "name": "python"
+    }
+  },
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "view-in-github",
+        "colab_type": "text"
+      },
+      "source": [
+        "<a href=\"https://colab.research.google.com/github/Hema108126/CSA6303-Threat-Intelligence/blob/main/EXPERIMENTS-/EXP%206\" target=\"_parent\"><img src=\"https://colab.research.google.com/assets/colab-badge.svg\" alt=\"Open In Colab\"/></a>"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": 1,
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "uKuHzl78fsEC",
+        "outputId": "a552961c-2f3d-4a9c-e63b-0c5adf655f85"
+      },
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Enter URL to check: http://192.168.1.5/login/verify\n",
+            "Warning: Potentially suspicious URL\n",
+            "Indicators found:\n",
+            "- Suspicious keyword\n",
+            "- IP-based domain\n",
+            "- Excessive subdomains\n",
+            "- Uses HTTP instead of HTTPS\n"
+          ]
+        }
+      ],
+      "source": [
+        "# Phishing URL Detector\n",
+        "\n",
+        "from urllib.parse import urlparse\n",
+        "import ipaddress\n",
+        "\n",
+        "def detect_phishing(url):\n",
+        "    indicators = []\n",
+        "    parsed = urlparse(url if \"://\" in url else \"http://\" + url)\n",
+        "    host = parsed.hostname or \"\"\n",
+        "\n",
+        "    keywords = [\"login\", \"verify\", \"password\", \"secure\",\n",
+        "                \"update\", \"bank\", \"free\"]\n",
+        "\n",
+        "    if any(word in url.lower() for word in keywords):\n",
+        "        indicators.append(\"Suspicious keyword\")\n",
+        "\n",
+        "    try:\n",
+        "        ipaddress.ip_address(host)\n",
+        "        indicators.append(\"IP-based domain\")\n",
+        "    except ValueError:\n",
+        "        pass\n",
+        "\n",
+        "    if len(host.split(\".\")) > 3:\n",
+        "        indicators.append(\"Excessive subdomains\")\n",
+        "\n",
+        "    if \"@\" in parsed.netloc:\n",
+        "        indicators.append(\"Contains @ symbol\")\n",
+        "\n",
+        "    if parsed.scheme == \"http\":\n",
+        "        indicators.append(\"Uses HTTP instead of HTTPS\")\n",
+        "\n",
+        "    if indicators:\n",
+        "        print(\"Warning: Potentially suspicious URL\")\n",
+        "        print(\"Indicators found:\")\n",
+        "        for item in indicators:\n",
+        "            print(\"-\", item)\n",
+        "    else:\n",
+        "        print(\"No common phishing indicators detected\")\n",
+        "\n",
+        "url = input(\"Enter URL to check: \")\n",
+        "detect_phishing(url)"
+      ]
+    }
+  ]
+}
