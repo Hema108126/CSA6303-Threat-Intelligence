@@ -1,0 +1,75 @@
+{
+  "nbformat": 4,
+  "nbformat_minor": 0,
+  "metadata": {
+    "colab": {
+      "provenance": [],
+      "authorship_tag": "ABX9TyMOS2e2nt0G+MvFRnWSbQCS",
+      "include_colab_link": true
+    },
+    "kernelspec": {
+      "name": "python3",
+      "display_name": "Python 3"
+    },
+    "language_info": {
+      "name": "python"
+    }
+  },
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "view-in-github",
+        "colab_type": "text"
+      },
+      "source": [
+        "<a href=\"https://colab.research.google.com/github/Hema108126/CSA6303-Threat-Intelligence/blob/main/EXPERIMENTS-/EXP%2012\" target=\"_parent\"><img src=\"https://colab.research.google.com/assets/colab-badge.svg\" alt=\"Open In Colab\"/></a>"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": 1,
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "BvWrixqVj8_k",
+        "outputId": "d4deb491-cc41-4878-f7b8-315b9d9a866a"
+      },
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Enter SOC alert description: Ransomware detected on the company server\n",
+            "Alert Priority: P1 - Critical\n"
+          ]
+        }
+      ],
+      "source": [
+        "# SOC Alert Priority Classifier\n",
+        "\n",
+        "def classify_alert(alert):\n",
+        "    alert = alert.lower()\n",
+        "\n",
+        "    if any(word in alert for word in\n",
+        "           [\"ransomware\", \"data breach\", \"active attack\", \"critical\"]):\n",
+        "        return \"P1 - Critical\"\n",
+        "\n",
+        "    elif any(word in alert for word in\n",
+        "             [\"malware\", \"unauthorized access\", \"multiple failed logins\"]):\n",
+        "        return \"P2 - High\"\n",
+        "\n",
+        "    elif any(word in alert for word in\n",
+        "             [\"suspicious login\", \"port scan\", \"unusual activity\"]):\n",
+        "        return \"P3 - Medium\"\n",
+        "\n",
+        "    else:\n",
+        "        return \"P4 - Low\"\n",
+        "\n",
+        "alert = input(\"Enter SOC alert description: \")\n",
+        "print(\"Alert Priority:\", classify_alert(alert))"
+      ]
+    }
+  ]
+}
