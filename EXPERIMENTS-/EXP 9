@@ -1,0 +1,75 @@
+{
+  "nbformat": 4,
+  "nbformat_minor": 0,
+  "metadata": {
+    "colab": {
+      "provenance": [],
+      "authorship_tag": "ABX9TyNh/PLrhgQQBL1NyoVrqW3I",
+      "include_colab_link": true
+    },
+    "kernelspec": {
+      "name": "python3",
+      "display_name": "Python 3"
+    },
+    "language_info": {
+      "name": "python"
+    }
+  },
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "view-in-github",
+        "colab_type": "text"
+      },
+      "source": [
+        "<a href=\"https://colab.research.google.com/github/Hema108126/CSA6303-Threat-Intelligence/blob/main/EXPERIMENTS-/EXP%209\" target=\"_parent\"><img src=\"https://colab.research.google.com/assets/colab-badge.svg\" alt=\"Open In Colab\"/></a>"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": 1,
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "TzfI7Sujh9so",
+        "outputId": "fc4d77eb-14fc-4768-d6e2-7610545e2a52"
+      },
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Enter intelligence team activity: The team analyzes logs to identify suspicious activity\n",
+            "Lifecycle Stage: Collection\n"
+          ]
+        }
+      ],
+      "source": [
+        "# Classify Threat Intelligence Lifecycle Stages\n",
+        "\n",
+        "def classify_stage(activity):\n",
+        "    activity = activity.lower()\n",
+        "\n",
+        "    keywords = {\n",
+        "        \"Direction\": [\"goal\", \"requirement\", \"planning\", \"priority\"],\n",
+        "        \"Collection\": [\"collect\", \"gather\", \"logs\", \"sources\"],\n",
+        "        \"Processing\": [\"clean\", \"filter\", \"organize\", \"normalize\"],\n",
+        "        \"Analysis\": [\"analyze\", \"investigate\", \"correlate\", \"identify\"],\n",
+        "        \"Dissemination\": [\"share\", \"report\", \"distribute\", \"send\"],\n",
+        "        \"Feedback\": [\"feedback\", \"review\", \"improve\", \"evaluate\"]\n",
+        "    }\n",
+        "\n",
+        "    for stage, words in keywords.items():\n",
+        "        if any(word in activity for word in words):\n",
+        "            return stage\n",
+        "\n",
+        "    return \"Stage not identified\"\n",
+        "\n",
+        "activity = input(\"Enter intelligence team activity: \")\n",
+        "print(\"Lifecycle Stage:\", classify_stage(activity))"
+      ]
+    }
+  ]
+}
